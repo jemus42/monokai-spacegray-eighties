@@ -1,0 +1,31 @@
+{
+  "name": "monokai-spacegray-eighties",
+  "displayName": "Monokai Spacegray Eighties",
+  "description": "A dark theme combining Monokai and Spacegray Eighties aesthetics",
+  "version": "0.0.1",
+  "publisher": "jemus42",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jemus42/monokai-spacegray-eighties"
+  },
+  "bugs": {
+    "url": "https://github.com/jemus42/monokai-spacegray-eighties/issues"
+  },
+  "homepage": "https://github.com/jemus42/monokai-spacegray-eighties#readme",
+  "engines": {
+    "vscode": "^1.0.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "Monokai Spacegray Eighties",
+        "uiTheme": "vs-dark",
+        "path": "./themes/monokai-spacegray-eighties.json"
+      }
+    ]
+  }
+}
