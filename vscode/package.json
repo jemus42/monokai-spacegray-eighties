@@ -12,7 +12,7 @@
   "bugs": {
     "url": "https://github.com/jemus42/monokai-spacegray-eighties/issues"
   },
-  "homepage": "https://github.com/jemus42/monokai-spacegray-eighties#readme",
+  "homepage": "https://github.com/jemus42/monokai-spacegray-eighties",
   "engines": {
     "vscode": "^1.0.0"
   },
