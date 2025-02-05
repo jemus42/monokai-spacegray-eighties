@@ -12,11 +12,30 @@
     },
     "tokenColors": [
         {
-            "name": "Comments",
+            "name": "Variables and Objects",
+            "scope": [
+                "variable",
+                "variable.other",
+                "variable.objectsource.r",
+                "meta.definition.variable",
+                "support.class",
+                "support.other",
+                "variable.other.constant",
+                "entity.name.namespace",
+                "support.type.namespace",
+                "support.other.namespace"
+            ],
+            "settings": {
+                "foreground": "#F8F8F8"
+            }
+        },
+        {
+            "name": "Comments and Documentation",
             "scope": [
                 "comment",
                 "comment.line",
-                "comment.block"
+                "comment.block",
+                "comment.documentation.r"
             ],
             "settings": {
                 "foreground": "#808080"
@@ -48,26 +67,11 @@
                 "meta.function-call",
                 "support.function",
                 "meta.method-call",
-                "meta.function.call"
+                "meta.function.call",
+                "keyword.operatorsource"
             ],
             "settings": {
                 "foreground": "#66D9EF"
-            }
-        },
-        {
-            "name": "Variables and Package Names",
-            "scope": [
-                "variable.other",
-                "meta.definition.variable",
-                "support.class",
-                "support.other",
-                "variable.other.constant",
-                "entity.name.namespace",
-                "support.type.namespace",
-                "support.other.namespace"
-            ],
-            "settings": {
-                "foreground": "#F8F8F8"
             }
         },
         {
