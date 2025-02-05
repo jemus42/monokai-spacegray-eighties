@@ -14,7 +14,6 @@
         {
             "name": "Variables and Objects",
             "scope": [
-                "variable",
                 "variable.other",
                 "variable.objectsource.r",
                 "meta.definition.variable",
@@ -38,6 +37,7 @@
                 "comment.documentation.r"
             ],
             "settings": {
+                "fontStyle": "italic",
                 "foreground": "#808080"
             }
         },

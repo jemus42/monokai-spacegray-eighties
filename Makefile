@@ -1,10 +1,21 @@
 .PHONY: all vsix install
 
-all: vsix install
+EXTPATH=vscode
+NAME=$(shell jq -r ".name" < $(EXTPATH)/package.json)
+VERSION=$(shell jq -r ".version" < $(EXTPATH)/package.json)
 
-vsix:
-	cd vscode && vsce package
 
-install:
-	code --install-extension vscode/*.vsix
-	positron --install-extension vscode/*vsix
+VSIX=$(EXTPATH)/$(NAME)-$(VERSION).vsix
+
+all: install
+
+$(VSIX): clean
+	cd $(EXTPATH) && vsce package
+
+
+install: $(VSIX)
+	code --install-extension $(VSIX)
+	positron --install-extension $(VSIX)
+
+clean:
+	-rm $(VSIX)
