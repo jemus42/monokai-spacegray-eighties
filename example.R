@@ -17,7 +17,15 @@ pi # The value of pi up to some threshold
 "Hello" + "world" # not fine
 2 + "2" # Also not fine
 
+# Comment formatting with the Better Comments extension
+#! Do not do the thing
+# TODO: Fix shit
+#* Important
+#' Roxygen comment can't be styled with extension as that would override
+#' @param highlighting like this
+#// Nevermind
 # We can store values in variables using <- or =
+
 age <- 30 # Very common and "normal" in the R community
 age = 30 # Very common and "normal" in basically every other language!
 
@@ -36,6 +44,8 @@ rm(height_cm)
 height_cm
 
 library(gapminder)
+library(dplyr)
+library(ggplot2)
 
 gapminder |>
   mutate(life_expectancy = lifeExp) |>

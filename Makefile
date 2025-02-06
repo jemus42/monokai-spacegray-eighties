@@ -18,4 +18,4 @@ install: $(VSIX)
 	positron --install-extension $(VSIX)
 
 clean:
-	-rm $(VSIX)
+	-rm $(EXTPATH)/*vsix
