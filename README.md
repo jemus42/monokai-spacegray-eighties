@@ -10,6 +10,12 @@ to convert to to the VSCode format.
 Disclaimer: I used Claude for the conversion from tmTheme to VScode and threw in the 
 rstheme for good measure and honestly I haven't done any kind of fine-tuning yet YMMV.
 
+Still in need of fixing:
+
+- JSON
+- CSS
+- Okay basically everything that isn't R specifically isn't looking _great_.
+
 
 ## Building for VSCode / Positron
 
