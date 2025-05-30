@@ -7,20 +7,21 @@ I got it off of a TextMate theme editor webapp thingy a while back, imported it 
 and now I would like to use it with [Positron](https://positron.posit.co/) so I had to try 
 to convert to to the VSCode format.
 
-Disclaimer: I used Claude for the conversion from tmTheme to VScode and threw in the 
-rstheme for good measure and honestly I haven't done any kind of fine-tuning yet YMMV.
+Disclaimer: I used Claude heavily for the conversion from tmTheme to VScode and threw in the 
+rstheme for good measure and honestly I'm just trial-and-erroring my way towards a usable theme.
 
-Still in need of fixing:
+The primary target for the R syntax is Positron, so if it doesn't look exactly correct for VSCode with the REditorSupport R extension: Yes, I know, sorry about that, it is a compromise.
 
-- JSON
-- CSS
-- Okay basically everything that isn't R specifically isn't looking _great_.
-
+I also tried to make quarto documents look okay but everything about this is quite WIP.
 
 ## Building for VSCode / Positron
 
+Either use `just install` or do it manually:
+
 ```sh
 cd vscode
+
+# Build the extensions, needs the vsce tool installed via npm.
 vsce package
 
 # Install for VSCode

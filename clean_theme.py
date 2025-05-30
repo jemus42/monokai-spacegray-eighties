@@ -1,40 +1,17 @@
-{
-    "name": "Monokai Spacegray Eighties",
-    "type": "dark",
-    "semanticHighlighting": false,
-    "colors": {
-        "editor.background": "#1C1C1C",
-        "editor.foreground": "#F8F8F8",
-        "editor.lineHighlightBackground": "#343434",
-        "editor.selectionBackground": "#3C3C3C",
-        "editor.selectionHighlightBackground": "#3C3C3C40",
-        "editor.findMatchBackground": "#515C6A",
-        "editor.findMatchHighlightBackground": "#515C6A40",
-        "editor.wordHighlightBackground": "#4C4C4C40",
-        "editor.wordHighlightStrongBackground": "#4C4C4C80",
-        "editorCursor.foreground": "#F8F8F8",
-        "editorWhitespace.foreground": "#3A3A3A",
-        "editorLineNumber.foreground": "#8A8A8A",
-        "editorLineNumber.activeForeground": "#F8F8F8",
-        "editorIndentGuide.background": "#3A3A3A",
-        "editorIndentGuide.activeBackground": "#6A6A6A",
-        "editorBracketMatch.background": "rgba(128, 128, 128, 0.5)",
-        "editorBracketMatch.border": "#808080",
-        "sideBar.background": "#1C1C1C",
-        "sideBar.foreground": "#F8F8F8",
-        "sideBarSectionHeader.background": "#343434",
-        "activityBar.background": "#1C1C1C",
-        "activityBar.foreground": "#F8F8F8",
-        "statusBar.background": "#1C1C1C",
-        "statusBar.foreground": "#F8F8F8",
-        "tab.activeBackground": "#343434",
-        "tab.inactiveBackground": "#1C1C1C",
-        "tab.activeForeground": "#F8F8F8",
-        "tab.inactiveForeground": "#808080",
-        "terminal.foreground": "#F8F8F8",
-        "terminal.background": "#1C1C1C"
-    },
-    "tokenColors": [
+#!/usr/bin/env python3
+"""
+Clean up theme duplicates and conflicts
+"""
+
+import json
+from collections import defaultdict
+
+def clean_theme():
+    with open("vscode/themes/monokai-spacegray-eighties.json", 'r') as f:
+        theme = json.load(f)
+    
+    # Start with essential base rules
+    cleaned_rules = [
         {
             "name": "Comments",
             "scope": [
@@ -108,7 +85,7 @@
             "scope": [
                 "keyword.operator",
                 "keyword.operator.assignment",
-                "keyword.operator.arithmetic",
+                "keyword.operator.arithmetic", 
                 "keyword.operator.logical",
                 "keyword.operator.comparison",
                 "keyword.operator.pipe.r",
@@ -223,7 +200,7 @@
                 "entity.name.section.quarto",
                 "markup.heading.quarto",
                 "heading.1.quarto",
-                "heading.2.quarto",
+                "heading.2.quarto", 
                 "heading.3.quarto",
                 "heading.4.quarto",
                 "heading.5.quarto",
@@ -246,4 +223,13 @@
             }
         }
     ]
-}
+    
+    theme['tokenColors'] = cleaned_rules
+    
+    with open("vscode/themes/monokai-spacegray-eighties.json", 'w') as f:
+        json.dump(theme, f, indent=4)
+    
+    print(f"✅ Cleaned theme: {len(cleaned_rules)} rules (was 70)")
+
+if __name__ == "__main__":
+    clean_theme()

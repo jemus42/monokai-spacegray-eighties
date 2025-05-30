@@ -54,10 +54,12 @@ info:
     @echo "VSIX: {{vsix}}"
     @echo "Extension path: {{extpath}}"
 
-# Validate package.json
+# Validate package.json and theme
 validate:
     @echo "Validating package.json..."
     @jq empty {{extpath}}/package.json && echo "✓ package.json is valid JSON"
+    @echo "Validating theme..."
+    @uv run python validate_theme.py
 
 # Lint the theme files
 lint: validate

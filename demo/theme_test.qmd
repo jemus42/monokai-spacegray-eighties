@@ -1,0 +1,377 @@
+---
+title: "Monokai Spacegray Eighties Theme Test"
+subtitle: "Testing syntax highlighting across languages in Quarto"
+author: "Theme Developer"
+date: today
+format: 
+  html:
+    code-fold: false
+    code-tools: true
+    toc: true
+execute:
+  warning: false
+  message: false
+---
+
+# Introduction
+
+This document tests the **Monokai Spacegray Eighties** theme across different programming languages and Quarto features.
+
+## Expected Colors
+
+- **Comments**: Gray italic (#808080)
+- **Keywords**: Pink (#F92672) - `if`, `for`, `function`, `class`
+- **Operators**: Pink (#F92672) - `|>`, `%in%`, `+`, `-`, `==`, `::` 
+- **Strings**: Yellow (#E6DB74)
+- **Numbers**: Purple (#AE81FF)
+- **Functions**: Cyan (#66D9EF) - `filter()`, `print()`, `Plot.dot()`
+- **Variables**: White (#F8F8F8)
+- **Parameters**: Orange italic (#FD971F)
+- **Headers**: Green bold (#A6E22E)
+
+# R Code Examples
+
+Testing comprehensive R syntax highlighting with modern tidyverse patterns:
+
+```{r}
+#| label: r-example
+#| echo: true
+
+# Load required packages
+library(dplyr)
+library(ggplot2)
+library(tidyr)
+
+# Function definition with parameters
+calculate_summary <- function(data, group_var = "species", value_var = "measurement") {
+  # This function should have green name, orange parameters
+  result <- data |>
+    filter(!is.na(!!sym(value_var))) |>  # |> should be pink
+    group_by(!!sym(group_var)) |>
+    summarise(
+      n = n(),                           # n should be cyan
+      mean_val = mean(!!sym(value_var)), # mean should be cyan
+      sd_val = sd(!!sym(value_var)),     # = should be pink
+      .groups = "drop"                   # .groups should be white
+    )
+  
+  return(result)
+}
+
+# Data manipulation pipeline
+sample_data <- tibble(
+  species = rep(c("setosa", "versicolor", "virginica"), each = 50),
+  measurement = c(rnorm(50, 5.0, 0.5), rnorm(50, 6.0, 0.7), rnorm(50, 6.5, 0.8)),
+  category = sample(c("A", "B", "C"), 150, replace = TRUE)
+)
+
+# Test various operators and function calls
+results <- sample_data |>
+  mutate(
+    log_measurement = log(measurement),    # log should be cyan
+    is_large = measurement > 6.0,          # > should be pink
+    group_size = case_when(               # case_when should be cyan
+      measurement %in% c(4:5) ~ "small",  # %in% should be pink
+      measurement >= 5 & measurement < 6.5 ~ "medium",  # & should be pink
+      TRUE ~ "large"
+    )
+  ) |>
+  filter(species != "setosa") %>%          # both |> and %>% should be pink
+  arrange(desc(measurement))               # desc should be cyan
+
+# Namespace usage
+summary_stats <- dplyr::summarise(        # dplyr should be green, :: pink, summarise cyan
+  results,
+  across(where(is.numeric), list(mean = mean, sd = sd))  # across, where should be cyan
+)
+
+# Statistical analysis
+model <- lm(measurement ~ species + category, data = sample_data)
+anova_results <- anova(model)             # anova should be cyan
+
+# Plotting
+p <- ggplot(sample_data, aes(x = species, y = measurement, fill = category)) +
+  geom_boxplot(alpha = 0.7) +            # geom_boxplot should be cyan
+  geom_jitter(width = 0.2, alpha = 0.5) +
+  scale_fill_viridis_d() +               # scale_fill_viridis_d should be cyan
+  labs(
+    title = "Distribution by Species",    # strings should be yellow
+    x = "Species",
+    y = "Measurement Value"
+  ) +
+  theme_minimal()                        # theme_minimal should be cyan
+
+print(p)
+```
+
+# Python Code Examples
+
+Testing Python syntax highlighting with data science libraries:
+
+```{python}
+#| label: python-example
+#| echo: true
+#| eval: false
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+
+# Function definition
+def prepare_data(df, target_col="target", test_size=0.2):
+    """
+    Prepare data for machine learning.
+    
+    Parameters:
+    -----------
+    df : pandas.DataFrame
+        Input dataframe
+    target_col : str, default="target"  
+        Name of target column
+    test_size : float, default=0.2
+        Fraction for test set
+    """
+    # Separate features and target
+    X = df.drop(columns=[target_col])
+    y = df[target_col]
+    
+    # Train-test split
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=test_size, random_state=42
+    )
+    
+    return X_train, X_test, y_train, y_test
+
+# Generate sample data
+np.random.seed(42)
+n_samples = 1000
+
+data = {
+    'feature_1': np.random.normal(0, 1, n_samples),
+    'feature_2': np.random.exponential(2, n_samples),
+    'feature_3': np.random.uniform(-1, 1, n_samples),
+    'category': np.random.choice(['A', 'B', 'C'], n_samples)
+}
+
+# Create DataFrame
+df = pd.DataFrame(data)
+df['target'] = (df['feature_1'] + df['feature_2'] > 2).astype(int)
+
+# Data exploration
+print(f"Dataset shape: {df.shape}")
+print("\nClass distribution:")
+print(df['target'].value_counts())
+
+# Feature engineering
+df['feature_interaction'] = df['feature_1'] * df['feature_2']
+df['feature_ratio'] = df['feature_1'] / (df['feature_2'] + 1e-8)
+
+# Prepare data for modeling
+X_train, X_test, y_train, y_test = prepare_data(df, 'target')
+
+# Train model
+rf_model = RandomForestClassifier(
+    n_estimators=100,
+    max_depth=10,
+    random_state=42
+)
+
+rf_model.fit(X_train, y_train)
+
+# Evaluate
+train_score = rf_model.score(X_train, y_train)
+test_score = rf_model.score(X_test, y_test)
+
+print(f"\nModel Performance:")
+print(f"Training accuracy: {train_score:.3f}")
+print(f"Test accuracy: {test_score:.3f}")
+
+# Feature importance
+feature_names = X_train.columns
+importances = rf_model.feature_importances_
+
+for name, importance in zip(feature_names, importances):
+    print(f"{name}: {importance:.3f}")
+```
+
+# Observable Plot Example
+
+Testing Observable Plot syntax highlighting for interactive visualizations:
+
+```{ojs}
+//| label: observable-example
+//| echo: true
+
+// Import libraries
+Plot = import("https://esm.sh/@observablehq/plot@0.6")
+d3 = import("https://esm.sh/d3@7")
+
+// Generate sample data
+data = {
+  const n = 200;
+  return Array.from({length: n}, (_, i) => ({
+    x: Math.random() * 100,
+    y: Math.random() * 100 + Math.sin(i / 10) * 20,
+    category: ["A", "B", "C"][Math.floor(Math.random() * 3)],
+    size: Math.random() * 50 + 10
+  }));
+}
+
+// Create scatter plot
+Plot.plot({
+  title: "Interactive Scatter Plot",
+  subtitle: "Hover over points for details",
+  width: 640,
+  height: 400,
+  color: {
+    legend: true,
+    scheme: "category10"
+  },
+  marks: [
+    Plot.dot(data, {
+      x: "x",
+      y: "y", 
+      fill: "category",
+      r: d => Math.sqrt(d.size),
+      fillOpacity: 0.7,
+      stroke: "white",
+      strokeWidth: 1,
+      title: d => `Category: ${d.category}\nX: ${d.x.toFixed(1)}\nY: ${d.y.toFixed(1)}`
+    }),
+    Plot.linearRegressionY(data, {
+      x: "x", 
+      y: "y",
+      stroke: "red",
+      strokeWidth: 2,
+      strokeDasharray: "5,5"
+    })
+  ],
+  grid: true,
+  style: {
+    background: "#f8f9fa"
+  }
+})
+
+// Summary statistics
+summary = {
+  const categories = d3.group(data, d => d.category);
+  return Array.from(categories, ([category, values]) => ({
+    category,
+    count: values.length,
+    mean_x: d3.mean(values, d => d.x),
+    mean_y: d3.mean(values, d => d.y),
+    total_size: d3.sum(values, d => d.size)
+  }));
+}
+
+// Display summary table
+Inputs.table(summary, {
+  header: {
+    category: "Category",
+    count: "Count", 
+    mean_x: "Mean X",
+    mean_y: "Mean Y",
+    total_size: "Total Size"
+  },
+  format: {
+    mean_x: x => x.toFixed(2),
+    mean_y: x => x.toFixed(2),
+    total_size: x => x.toFixed(1)
+  }
+})
+```
+
+# Code Fence Examples
+
+Testing various languages in fenced code blocks:
+
+## SQL
+```sql
+-- Database query example  
+SELECT 
+    customer_id,
+    COUNT(*) as order_count,
+    SUM(total_amount) as total_spent,
+    AVG(total_amount) as avg_order_value
+FROM orders 
+WHERE order_date >= '2024-01-01'
+    AND status IN ('completed', 'shipped')
+GROUP BY customer_id
+HAVING COUNT(*) > 5
+ORDER BY total_spent DESC
+LIMIT 100;
+```
+
+## YAML Configuration
+```yaml
+# Quarto project configuration
+project:
+  type: website
+  output-dir: _site
+  
+website:
+  title: "My Analysis"
+  navbar:
+    - text: "Home"
+      href: index.qmd
+    - text: "Analysis" 
+      href: analysis.qmd
+      
+format:
+  html:
+    theme: cosmo
+    toc: true
+    number-sections: true
+    code-fold: show
+    
+execute:
+  freeze: auto
+  warning: false
+```
+
+## JSON Data
+```json
+{
+  "metadata": {
+    "title": "Sample Dataset",
+    "version": "1.0.0",
+    "created": "2024-01-15"
+  },
+  "schema": {
+    "fields": [
+      {
+        "name": "id",
+        "type": "integer",
+        "description": "Unique identifier"
+      },
+      {
+        "name": "value", 
+        "type": "number",
+        "constraints": {
+          "minimum": 0,
+          "maximum": 100
+        }
+      }
+    ]
+  },
+  "data": [
+    {"id": 1, "value": 23.5},
+    {"id": 2, "value": 67.2},
+    {"id": 3, "value": 91.8}
+  ]
+}
+```
+
+# Conclusion
+
+This document tests all major syntax highlighting features of the Monokai Spacegray Eighties theme across:
+
+- **R**: Tidyverse patterns, pipes, functions, namespaces
+- **Python**: Data science workflows, classes, methods  
+- **Observable**: Plot.js, D3, interactive visualizations
+- **Markup**: Headers, emphasis, code blocks
+- **Data formats**: JSON, YAML, SQL
+
+The theme should provide consistent, readable highlighting that maintains the classic Monokai aesthetic while being optimized for modern data science workflows.
