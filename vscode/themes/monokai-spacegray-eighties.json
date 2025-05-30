@@ -1,51 +1,75 @@
 {
     "name": "Monokai Spacegray Eighties",
     "type": "dark",
-    "semanticHighlighting": true,
+    "semanticHighlighting": false,
     "colors": {
         "editor.background": "#1C1C1C",
         "editor.foreground": "#F8F8F8",
         "editor.lineHighlightBackground": "#343434",
         "editor.selectionBackground": "#3C3C3C",
+        "editor.selectionHighlightBackground": "#3C3C3C40",
+        "editor.findMatchBackground": "#515C6A",
+        "editor.findMatchHighlightBackground": "#515C6A40",
+        "editor.wordHighlightBackground": "#4C4C4C40",
+        "editor.wordHighlightStrongBackground": "#4C4C4C80",
         "editorCursor.foreground": "#F8F8F8",
-        "editorWhitespace.foreground": "#3A3A3A"
+        "editorWhitespace.foreground": "#3A3A3A",
+        "editorLineNumber.foreground": "#8A8A8A",
+        "editorLineNumber.activeForeground": "#F8F8F8",
+        "editorIndentGuide.background": "#3A3A3A",
+        "editorIndentGuide.activeBackground": "#6A6A6A",
+        "editorBracketMatch.background": "rgba(128, 128, 128, 0.5)",
+        "editorBracketMatch.border": "#808080",
+        "sideBar.background": "#1C1C1C",
+        "sideBar.foreground": "#F8F8F8",
+        "sideBarSectionHeader.background": "#343434",
+        "activityBar.background": "#1C1C1C",
+        "activityBar.foreground": "#F8F8F8",
+        "statusBar.background": "#1C1C1C",
+        "statusBar.foreground": "#F8F8F8",
+        "tab.activeBackground": "#343434",
+        "tab.inactiveBackground": "#1C1C1C",
+        "tab.activeForeground": "#F8F8F8",
+        "tab.inactiveForeground": "#808080",
+        "terminal.foreground": "#F8F8F8",
+        "terminal.background": "#1C1C1C"
     },
     "tokenColors": [
-        {
-            "name": "Variables and Objects",
-            "scope": [
-                "variable.other",
-                "variable.objectsource.r",
-                "meta.definition.variable",
-                "support.class",
-                "support.other",
-                "variable.other.constant",
-                "entity.name.namespace",
-                "support.type.namespace",
-                "support.other.namespace"
-            ],
-            "settings": {
-                "foreground": "#F8F8F8"
-            }
-        },
         {
             "name": "Comments and Documentation",
             "scope": [
                 "comment",
                 "comment.line",
                 "comment.block",
-                "comment.documentation.r"
+                "comment.documentation",
+                "punctuation.definition.comment"
             ],
             "settings": {
                 "fontStyle": "italic",
-                "foreground": "#A0A0A0"
+                "foreground": "#808080"
             }
         },
         {
-            "name": "String",
-            "scope": "string",
+            "name": "Strings",
+            "scope": [
+                "string",
+                "string.quoted",
+                "string.template",
+                "string.interpolated",
+                "string.regexp"
+            ],
             "settings": {
                 "foreground": "#E6DB74"
+            }
+        },
+        {
+            "name": "String Escapes",
+            "scope": [
+                "constant.character.escape",
+                "constant.other.placeholder"
+            ],
+            "settings": {
+                "foreground": "#AE81FF"
             }
         },
         {
@@ -61,38 +85,776 @@
             }
         },
         {
-            "name": "Functions and Methods",
+            "name": "Booleans and Null",
             "scope": [
-                "entity.name.function",
-                "meta.function-call",
-                "support.function",
-                "meta.method-call",
-                "meta.function.call",
-                "keyword.operatorsource"
+                "constant.language.boolean",
+                "constant.language.null",
+                "constant.language.undefined",
+                "constant.language.nil"
             ],
             "settings": {
-                "foreground": "#66D9EF"
+                "foreground": "#AE81FF"
             }
         },
         {
             "name": "Keywords and Storage",
             "scope": [
                 "keyword",
+                "keyword.control",
+                "keyword.other",
                 "storage",
-                "storage.type",
-                "storage.modifier",
-                "variable.language"
+                "storage.modifier"
             ],
             "settings": {
                 "foreground": "#F92672"
             }
         },
         {
-            "name": "Function Parameters",
-            "scope": "variable.parameter",
+            "name": "Storage Types",
+            "scope": [
+                "storage.type"
+            ],
+            "settings": {
+                "fontStyle": "italic",
+                "foreground": "#66D9EF"
+            }
+        },
+        {
+            "name": "Operators (including R pipe |>)",
+            "scope": [
+                "keyword.operator",
+                "keyword.operator.assignment",
+                "keyword.operator.arithmetic",
+                "keyword.operator.logical",
+                "keyword.operator.comparison",
+                "keyword.operator.pipe.r",
+                "keyword.operator.infix.r",
+                "keyword.operator.r",
+                "punctuation.accessor",
+                "punctuation.separator.comma",
+                "punctuation.terminator.statement"
+            ],
+            "settings": {
+                "foreground": "#F92672"
+            }
+        },
+        {
+            "name": "Punctuation - General",
+            "scope": [
+                "punctuation.separator",
+                "punctuation.terminator",
+                "punctuation.brackets",
+                "punctuation.section.brackets",
+                "punctuation.section.parens",
+                "punctuation.definition.brackets",
+                "punctuation.definition.parens"
+            ],
+            "settings": {
+                "foreground": "#F8F8F8"
+            }
+        },
+        {
+            "name": "User-defined Functions",
+            "scope": [
+                "entity.name.function",
+                "meta.function-call entity.name.function",
+                "variable.function"
+            ],
+            "settings": {
+                "foreground": "#A6E22E"
+            }
+        },
+        {
+            "name": "Built-in Functions and Support",
+            "scope": [
+                "support.function",
+                "support.constant",
+                "meta.function-call support.function"
+            ],
+            "settings": {
+                "foreground": "#66D9EF"
+            }
+        },
+        {
+            "name": "Classes and Types",
+            "scope": [
+                "support.class",
+                "support.type",
+                "entity.name.class",
+                "entity.name.type",
+                "entity.other.inherited-class"
+            ],
+            "settings": {
+                "fontStyle": "italic",
+                "foreground": "#66D9EF"
+            }
+        },
+        {
+            "name": "Variables - General",
+            "scope": [
+                "variable",
+                "variable.other",
+                "variable.other.readwrite",
+                "variable.language.this",
+                "variable.language.self",
+                "variable.language.super"
+            ],
+            "settings": {
+                "foreground": "#F8F8F8"
+            }
+        },
+        {
+            "name": "Function Parameters Only",
+            "scope": [
+                "variable.parameter",
+                "variable.parameter.r",
+                "meta.function.parameters variable.parameter",
+                "meta.function.declaration variable.parameter",
+                "meta.function.call.arguments variable.parameter",
+                "meta.function.r variable.parameter.r"
+            ],
             "settings": {
                 "fontStyle": "italic",
                 "foreground": "#FD971F"
+            }
+        },
+        {
+            "name": "Properties and Attributes",
+            "scope": [
+                "variable.other.property",
+                "variable.other.member",
+                "meta.object-literal.key"
+            ],
+            "settings": {
+                "foreground": "#F8F8F8"
+            }
+        },
+        {
+            "name": "Attribute Names (HTML/XML)",
+            "scope": [
+                "entity.other.attribute-name"
+            ],
+            "settings": {
+                "foreground": "#A6E22E"
+            }
+        },
+        {
+            "name": "Import/Export Keywords",
+            "scope": [
+                "keyword.control.import",
+                "keyword.control.export",
+                "keyword.control.from",
+                "keyword.control.as"
+            ],
+            "settings": {
+                "foreground": "#F92672"
+            }
+        },
+        {
+            "name": "Module Names and Namespaces",
+            "scope": [
+                "entity.name.namespace",
+                "entity.name.module",
+                "support.other.module"
+            ],
+            "settings": {
+                "foreground": "#A6E22E"
+            }
+        },
+        {
+            "name": "Decorators and Annotations",
+            "scope": [
+                "entity.name.function.decorator",
+                "meta.decorator",
+                "punctuation.decorator"
+            ],
+            "settings": {
+                "foreground": "#A6E22E"
+            }
+        },
+        {
+            "name": "JSON Keys",
+            "scope": [
+                "meta.structure.dictionary.key.json string.quoted.double.json",
+                "meta.structure.dictionary.json string.quoted.double.json"
+            ],
+            "settings": {
+                "foreground": "#66D9EF"
+            }
+        },
+        {
+            "name": "YAML Keys",
+            "scope": [
+                "entity.name.tag.yaml"
+            ],
+            "settings": {
+                "foreground": "#66D9EF"
+            }
+        },
+        {
+            "name": "Markup Headers",
+            "scope": [
+                "markup.heading",
+                "entity.name.section.markdown",
+                "entity.name.section.quarto",
+                "markup.heading.quarto",
+                "heading.1.quarto",
+                "heading.2.quarto",
+                "heading.3.quarto",
+                "heading.4.quarto",
+                "heading.5.quarto",
+                "heading.6.quarto"
+            ],
+            "settings": {
+                "fontStyle": "bold",
+                "foreground": "#A6E22E"
+            }
+        },
+        {
+            "name": "Markup Bold",
+            "scope": [
+                "markup.bold"
+            ],
+            "settings": {
+                "fontStyle": "bold",
+                "foreground": "#F8F8F8"
+            }
+        },
+        {
+            "name": "Markup Italic",
+            "scope": [
+                "markup.italic"
+            ],
+            "settings": {
+                "fontStyle": "italic",
+                "foreground": "#F8F8F8"
+            }
+        },
+        {
+            "name": "Markup Code",
+            "scope": [
+                "markup.inline.raw",
+                "markup.fenced_code.block"
+            ],
+            "settings": {
+                "foreground": "#E6DB74"
+            }
+        },
+        {
+            "name": "Markup Links",
+            "scope": [
+                "markup.underline.link",
+                "string.other.link"
+            ],
+            "settings": {
+                "foreground": "#66D9EF"
+            }
+        },
+        {
+            "name": "Tags (HTML/XML)",
+            "scope": [
+                "entity.name.tag",
+                "punctuation.definition.tag"
+            ],
+            "settings": {
+                "foreground": "#F92672"
+            }
+        },
+        {
+            "name": "CSS Selectors",
+            "scope": [
+                "entity.name.tag.css",
+                "entity.other.attribute-name.class.css",
+                "entity.other.attribute-name.id.css"
+            ],
+            "settings": {
+                "foreground": "#F92672"
+            }
+        },
+        {
+            "name": "CSS Properties",
+            "scope": [
+                "support.type.property-name.css"
+            ],
+            "settings": {
+                "foreground": "#66D9EF"
+            }
+        },
+        {
+            "name": "Invalid/Error",
+            "scope": [
+                "invalid",
+                "invalid.illegal"
+            ],
+            "settings": {
+                "background": "#F92672",
+                "foreground": "#F8F8F8"
+            }
+        },
+        {
+            "name": "Deprecated",
+            "scope": [
+                "invalid.deprecated"
+            ],
+            "settings": {
+                "background": "#AE81FF",
+                "foreground": "#F8F8F8"
+            }
+        },
+        {
+            "name": "R Specific - All Operators and Pipes",
+            "scope": [
+                "keyword.operator.infix.r",
+                "keyword.operator.pipe.r",
+                "keyword.operator.r",
+                "keyword.operator.assignment.r",
+                "keyword.operator.arithmetic.r",
+                "keyword.operator.comparison.r",
+                "keyword.operator.logical.r",
+                "keyword.other.r",
+                "punctuation.other.r"
+            ],
+            "settings": {
+                "foreground": "#F92672"
+            }
+        },
+        {
+            "name": "R Variables - General Use",
+            "scope": [
+                "variable.other.r",
+                "variable.language.r",
+                "source.r variable.other",
+                "source.r variable"
+            ],
+            "settings": {
+                "foreground": "#F8F8F8",
+                "fontStyle": ""
+            }
+        },
+        {
+            "name": "R Function Parameters",
+            "scope": [
+                "variable.parameter.r",
+                "meta.function.r variable.parameter",
+                "meta.function.call.r variable.parameter"
+            ],
+            "settings": {
+                "fontStyle": "italic",
+                "foreground": "#FD971F"
+            }
+        },
+        {
+            "name": "R Functions - User Defined",
+            "scope": [
+                "entity.name.function.r",
+                "meta.function.call.r entity.name.function",
+                "source.r entity.name.function"
+            ],
+            "settings": {
+                "foreground": "#A6E22E"
+            }
+        },
+        {
+            "name": "R Functions - Built-in and Support",
+            "scope": [
+                "support.function.r",
+                "support.function.builtin.r",
+                "support.function.base.r",
+                "support.function.stats.r",
+                "support.function.utils.r",
+                "support.function.graphics.r",
+                "support.function.package.r"
+            ],
+            "settings": {
+                "foreground": "#66D9EF"
+            }
+        },
+        {
+            "name": "R Keywords and Control",
+            "scope": [
+                "keyword.control.r",
+                "keyword.other.r",
+                "storage.type.r",
+                "keyword.control.flow.r"
+            ],
+            "settings": {
+                "foreground": "#F92672"
+            }
+        },
+        {
+            "name": "R Comments",
+            "scope": [
+                "comment.line.number-sign.r",
+                "comment.block.r",
+                "punctuation.definition.comment.r"
+            ],
+            "settings": {
+                "fontStyle": "italic",
+                "foreground": "#808080"
+            }
+        },
+        {
+            "name": "R Strings",
+            "scope": [
+                "string.quoted.double.r",
+                "string.quoted.single.r",
+                "punctuation.definition.string.r"
+            ],
+            "settings": {
+                "foreground": "#E6DB74"
+            }
+        },
+        {
+            "name": "R Numbers",
+            "scope": [
+                "constant.numeric.r",
+                "constant.numeric.decimal.r",
+                "constant.numeric.integer.r"
+            ],
+            "settings": {
+                "foreground": "#AE81FF"
+            }
+        },
+        {
+            "name": "Python Decorators",
+            "scope": [
+                "meta.function.decorator.python",
+                "entity.name.function.decorator.python"
+            ],
+            "settings": {
+                "foreground": "#A6E22E"
+            }
+        },
+        {
+            "name": "Python Self Parameter",
+            "scope": [
+                "variable.parameter.function.language.special.self.python"
+            ],
+            "settings": {
+                "fontStyle": "italic",
+                "foreground": "#F92672"
+            }
+        },
+        {
+            "name": "Python Magic Methods",
+            "scope": [
+                "support.function.magic.python"
+            ],
+            "settings": {
+                "foreground": "#66D9EF"
+            }
+        },
+        {
+            "name": "C/C++ Preprocessor",
+            "scope": [
+                "meta.preprocessor",
+                "keyword.control.directive",
+                "entity.name.function.preprocessor"
+            ],
+            "settings": {
+                "foreground": "#A6E22E"
+            }
+        },
+        {
+            "name": "C/C++ Types",
+            "scope": [
+                "storage.type.built-in.primitive.c",
+                "storage.type.built-in.primitive.cpp"
+            ],
+            "settings": {
+                "foreground": "#66D9EF"
+            }
+        },
+        {
+            "name": "Rust Macros",
+            "scope": [
+                "entity.name.function.macro.rust",
+                "meta.macro.rust"
+            ],
+            "settings": {
+                "foreground": "#A6E22E"
+            }
+        },
+        {
+            "name": "Rust Attributes",
+            "scope": [
+                "meta.attribute.rust",
+                "punctuation.definition.attribute.rust"
+            ],
+            "settings": {
+                "foreground": "#A6E22E"
+            }
+        },
+        {
+            "name": "Rust Lifetime",
+            "scope": [
+                "storage.modifier.lifetime.rust",
+                "entity.name.type.lifetime.rust"
+            ],
+            "settings": {
+                "foreground": "#FD971F"
+            }
+        },
+        {
+            "name": "Rust Self Type",
+            "scope": [
+                "variable.language.self.rust"
+            ],
+            "settings": {
+                "fontStyle": "italic",
+                "foreground": "#F92672"
+            }
+        },
+        {
+            "name": "Go Package",
+            "scope": [
+                "entity.name.package.go"
+            ],
+            "settings": {
+                "foreground": "#A6E22E"
+            }
+        },
+        {
+            "name": "Go Struct Tags",
+            "scope": [
+                "string.quoted.raw.go"
+            ],
+            "settings": {
+                "foreground": "#A6E22E"
+            }
+        },
+        {
+            "name": "JavaScript/TypeScript Template Literals",
+            "scope": [
+                "string.template.js",
+                "string.template.ts"
+            ],
+            "settings": {
+                "foreground": "#E6DB74"
+            }
+        },
+        {
+            "name": "TypeScript Types",
+            "scope": [
+                "entity.name.type.ts",
+                "entity.name.type.tsx",
+                "support.type.primitive.ts",
+                "support.type.primitive.tsx"
+            ],
+            "settings": {
+                "fontStyle": "italic",
+                "foreground": "#66D9EF"
+            }
+        },
+        {
+            "name": "R Assignment Variables - Override",
+            "scope": [
+                "meta.definition.variable.r variable.other.r",
+                "meta.assignment.r variable.other.r",
+                "source.r meta.assignment variable",
+                "source.r variable.other.assignment",
+                "source.r keyword.operator.assignment + variable",
+                "source.r keyword.operator.assignment ~ variable"
+            ],
+            "settings": {
+                "foreground": "#F8F8F8",
+                "fontStyle": ""
+            }
+        },
+        {
+            "name": "Variable Override - Not Parameters",
+            "scope": [
+                "source.r variable.other:not(.parameter)",
+                "source.r variable:not(.parameter)",
+                "variable.other.readwrite.r"
+            ],
+            "settings": {
+                "foreground": "#F8F8F8",
+                "fontStyle": ""
+            }
+        },
+        {
+            "name": "R Assignment Variables - Not in Function Calls",
+            "scope": [
+                "source.r meta.assignment variable.parameter.r"
+            ],
+            "settings": {
+                "foreground": "#F8F8F8",
+                "fontStyle": ""
+            }
+        },
+        {
+            "name": "R Function Arguments - Real Parameters Only",
+            "scope": [
+                "meta.function.arguments.r variable.parameter.r",
+                "meta.function-call.arguments.r variable.parameter.r",
+                "meta.function.r meta.arguments.r variable.parameter.r"
+            ],
+            "settings": {
+                "fontStyle": "italic",
+                "foreground": "#FD971F"
+            }
+        },
+        {
+            "name": "R Support Functions - Override All Contexts",
+            "scope": [
+                "source.r support.function",
+                "source.r support.function.r",
+                "source.r meta.function-call support.function",
+                "source.r meta.function-call.r support.function.r",
+                "meta.function-call.piped.r support.function.r",
+                "meta.function-call.arguments.r support.function.r"
+            ],
+            "settings": {
+                "foreground": "#66D9EF"
+            }
+        },
+        {
+            "name": "R Entity Functions - User Defined Only",
+            "scope": [
+                "source.r entity.name.function.r",
+                "source.r meta.function-call entity.name.function",
+                "meta.function-call.piped.r entity.name.function.r",
+                "meta.function.r entity.name.function.r"
+            ],
+            "settings": {
+                "foreground": "#A6E22E"
+            }
+        },
+        {
+            "name": "All R Function Calls - Cyan",
+            "scope": [
+                "source.r entity.name.function.r",
+                "source.r entity.name.function",
+                "source.r meta.function-call entity.name.function",
+                "source.r meta.function-call.piped entity.name.function",
+                "source.r meta.function-call.r entity.name.function.r",
+                "source.r variable.function.r",
+                "source.r meta.function-call.r variable.function.r",
+                "variable.function.r",
+                "text.html.quarto entity.name.function",
+                "text.html.quarto meta.function-call entity.name.function",
+                "text.html.quarto meta.embedded.block.r entity.name.function",
+                "text.html.quarto variable.function.r"
+            ],
+            "settings": {
+                "foreground": "#66D9EF"
+            }
+        },
+        {
+            "name": "R Function Definitions Only - Green",
+            "scope": [
+                "source.r meta.function.r entity.name.function",
+                "source.r meta.definition.function entity.name.function",
+                "meta.function.r entity.name.function.r"
+            ],
+            "settings": {
+                "foreground": "#A6E22E"
+            }
+        },
+        {
+            "name": "R Storage Types are Functions",
+            "scope": [
+                "source.r storage.type.r",
+                "storage.type.r"
+            ],
+            "settings": {
+                "foreground": "#66D9EF",
+                "fontStyle": ""
+            }
+        },
+        {
+            "name": "R Control Keywords - Keep Pink",
+            "scope": [
+                "source.r keyword.control.r",
+                "source.r keyword.control.flow.r",
+                "source.r keyword.control.conditional.r",
+                "source.r keyword.control.loop.r"
+            ],
+            "settings": {
+                "foreground": "#F92672"
+            }
+        },
+        {
+            "name": "R Namespace/Package Names",
+            "scope": [
+                "source.r entity.name.namespace.r",
+                "source.r entity.namespace.r",
+                "source.r meta.namespace.r",
+                "source.r support.other.namespace.r",
+                "meta.function-call.r meta.namespace.r",
+                "entity.name.package.r",
+                "source.r meta.function-call.r variable.namespace.r",
+                "source.r variable.namespace.r",
+                "source.r meta.method.declaration.r entity.name.namespace.r"
+            ],
+            "settings": {
+                "foreground": "#A6E22E"
+            }
+        },
+        {
+            "name": "R Namespaced Functions",
+            "scope": [
+                "source.r meta.namespace.r + support.function.r",
+                "source.r meta.namespace.r ~ support.function.r",
+                "meta.function-call.r support.function.after-namespace.r",
+                "punctuation.accessor.namespace.r + support.function.r",
+                "punctuation.accessor.namespace.r ~ support.function.r"
+            ],
+            "settings": {
+                "foreground": "#66D9EF"
+            }
+        },
+        {
+            "name": "R Namespace Operators",
+            "scope": [
+                "source.r punctuation.accessor.namespace.r",
+                "source.r keyword.operator.namespace.r",
+                "source.r punctuation.accessor.double-colon.r",
+                "source.r punctuation.accessor.triple-colon.r"
+            ],
+            "settings": {
+                "foreground": "#F92672"
+            }
+        },
+        {
+            "name": "R Package Names Before ::",
+            "scope": [
+                "source.r meta.function-call.r entity.name.function.r",
+                "source.r entity.name.function.r"
+            ],
+            "settings": {
+                "foreground": "#A6E22E"
+            }
+        },
+        {
+            "name": "R Functions After ::",
+            "scope": [
+                "source.r meta.function-call.r meta.function-call.r entity.name.function.r",
+                "source.r meta.method-call.r entity.name.function.r"
+            ],
+            "settings": {
+                "foreground": "#66D9EF"
+            }
+        },
+        {
+            "name": "Quarto Embedded R Variables",
+            "scope": [
+                "text.html.quarto variable.object",
+                "text.html.quarto meta.embedded.block.r variable.object"
+            ],
+            "settings": {
+                "foreground": "#F8F8F8"
+            }
+        },
+        {
+            "name": "Quarto Embedded R Operators",
+            "scope": [
+                "text.html.quarto keyword.operator",
+                "text.html.quarto meta.embedded.block.r keyword.operator"
+            ],
+            "settings": {
+                "foreground": "#F92672"
             }
         }
     ]

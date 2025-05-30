@@ -2,7 +2,7 @@
   "name": "monokai-spacegray-eighties",
   "displayName": "Monokai Spacegray Eighties",
   "description": "A dark theme combining Monokai and Spacegray Eighties aesthetics",
-  "version": "0.0.3",
+  "version": "0.0.20",
   "publisher": "jemus42",
   "license": "MIT",
   "repository": {
@@ -19,6 +19,21 @@
   "categories": [
     "Themes"
   ],
+  "keywords": [
+    "theme",
+    "dark theme",
+    "monokai",
+    "spacegray",
+    "eighties",
+    "r",
+    "python",
+    "javascript"
+  ],
+  "icon": "icon.png",
+  "galleryBanner": {
+    "color": "#1C1C1C",
+    "theme": "dark"
+  },
   "contributes": {
     "themes": [
       {
