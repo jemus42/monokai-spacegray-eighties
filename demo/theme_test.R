@@ -24,6 +24,7 @@ z <- 10 %/% 3 # integer division
 
 # Assignment operators (should be pink)
 a <- 5 # preferred in R
+# fmt: skip
 b = 10 # also valid
 c <<- 15 # global assignment
 d ->> e # rightward assignment
@@ -127,6 +128,7 @@ if (x > 0) {
 }
 
 # Loops
+# fmt: skip
 for (i in 1:10) {
   if (i %% 2 == 0) next # next/break should be pink
   print(i)
