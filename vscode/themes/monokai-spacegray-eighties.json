@@ -32,7 +32,23 @@
         "tab.activeForeground": "#F8F8F8",
         "tab.inactiveForeground": "#808080",
         "terminal.foreground": "#F8F8F8",
-        "terminal.background": "#1C1C1C"
+        "terminal.background": "#1C1C1C",
+        "terminal.ansiBlack": "#3C3C3C",
+        "terminal.ansiRed": "#F92672",
+        "terminal.ansiGreen": "#A6E22E",
+        "terminal.ansiYellow": "#E6DB74",
+        "terminal.ansiBlue": "#6699CC",
+        "terminal.ansiMagenta": "#AE81FF",
+        "terminal.ansiCyan": "#66D9EF",
+        "terminal.ansiWhite": "#CFCFCF",
+        "terminal.ansiBrightBlack": "#808080",
+        "terminal.ansiBrightRed": "#FF5C8F",
+        "terminal.ansiBrightGreen": "#BEF05A",
+        "terminal.ansiBrightYellow": "#F4EC9C",
+        "terminal.ansiBrightBlue": "#8FB8E0",
+        "terminal.ansiBrightMagenta": "#C6A6FF",
+        "terminal.ansiBrightCyan": "#8EE6F5",
+        "terminal.ansiBrightWhite": "#F8F8F8"
     },
     "tokenColors": [
         {
