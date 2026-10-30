@@ -17,6 +17,19 @@ execute:
 
 This document tests the **Monokai Spacegray Eighties** theme across different programming languages and Quarto features.
 
+## Inline Formatting
+
+Text can be **bold**, *italic*, ***bold italic***, ~~struck through~~, or `inline code`.
+Underscore variants: __bold__ and _italic_.
+Inline R code: `r 1 + 1`, and inline math: $\alpha + \beta^2$.
+A [link to Positron](https://positron.posit.co/), an autolink <https://quarto.org>, and an image: ![logo](icon.png).
+
+> A block quote with **bold** and `code` inside.
+
+```
+A plain fenced block without a language.
+```
+
 ## Expected Colors
 
 - **Comments**: Gray italic (#808080)

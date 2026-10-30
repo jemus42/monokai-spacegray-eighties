@@ -114,9 +114,7 @@
                 "keyword.operator.pipe.r",
                 "keyword.operator.infix.r",
                 "keyword.operator.r",
-                "punctuation.accessor",
-                "punctuation.separator.comma",
-                "punctuation.terminator.statement"
+                "punctuation.accessor"
             ],
             "settings": {
                 "foreground": "#F92672"
@@ -195,13 +193,29 @@
             "scope": [
                 "support.class",
                 "support.type",
-                "entity.name.class",
-                "entity.name.type",
-                "entity.other.inherited-class"
+                "entity.name.type"
             ],
             "settings": {
                 "fontStyle": "italic",
                 "foreground": "#66D9EF"
+            }
+        },
+        {
+            "name": "Class Definitions",
+            "scope": [
+                "entity.name.class",
+                "entity.name.type.class"
+            ],
+            "settings": {
+                "foreground": "#A6E22E"
+            }
+        },
+        {
+            "name": "Inherited Classes",
+            "scope": "entity.other.inherited-class",
+            "settings": {
+                "fontStyle": "italic",
+                "foreground": "#A6E22E"
             }
         },
         {
@@ -232,6 +246,53 @@
             "settings": {
                 "fontStyle": "bold",
                 "foreground": "#A6E22E"
+            }
+        },
+        {
+            "name": "Markup Bold",
+            "scope": "markup.bold",
+            "settings": {
+                "fontStyle": "bold"
+            }
+        },
+        {
+            "name": "Markup Italic",
+            "scope": "markup.italic",
+            "settings": {
+                "fontStyle": "italic"
+            }
+        },
+        {
+            "name": "Markup Strikethrough",
+            "scope": "markup.strikethrough",
+            "settings": {
+                "fontStyle": "strikethrough"
+            }
+        },
+        {
+            "name": "Markup Inline Code",
+            "scope": [
+                "markup.inline.raw",
+                "markup.raw.block"
+            ],
+            "settings": {
+                "foreground": "#FD971F"
+            }
+        },
+        {
+            "name": "Markup Links",
+            "scope": "markup.underline.link",
+            "settings": {
+                "fontStyle": "underline",
+                "foreground": "#66D9EF"
+            }
+        },
+        {
+            "name": "Markup Quotes",
+            "scope": "markup.quote",
+            "settings": {
+                "fontStyle": "italic",
+                "foreground": "#808080"
             }
         },
         {
