@@ -1,4 +1,5 @@
 {
+    "$schema": "vscode://schemas/color-theme",
     "name": "Monokai Spacegray Eighties",
     "type": "dark",
     "semanticHighlighting": false,
@@ -90,12 +91,7 @@
             "name": "Comments",
             "scope": [
                 "comment",
-                "comment.line",
-                "comment.block",
-                "comment.documentation",
-                "punctuation.definition.comment",
-                "source.r comment.line.number-sign.r",
-                "text.html.quarto comment"
+                "punctuation.definition.comment"
             ],
             "settings": {
                 "fontStyle": "italic",
@@ -104,13 +100,7 @@
         },
         {
             "name": "Strings",
-            "scope": [
-                "string",
-                "string.quoted",
-                "string.template",
-                "string.interpolated",
-                "string.regexp"
-            ],
+            "scope": "string",
             "settings": {
                 "foreground": "#E6DB74"
             }
@@ -121,11 +111,7 @@
                 "constant.numeric",
                 "constant.language",
                 "constant.character",
-                "constant.other",
-                "constant.language.boolean",
-                "constant.language.null",
-                "constant.language.undefined",
-                "constant.language.nil"
+                "constant.other"
             ],
             "settings": {
                 "foreground": "#AE81FF"
@@ -145,10 +131,7 @@
             "name": "Keywords",
             "scope": [
                 "keyword",
-                "keyword.control",
-                "keyword.other",
-                "storage",
-                "storage.modifier"
+                "storage"
             ],
             "settings": {
                 "foreground": "#F92672"
@@ -158,13 +141,6 @@
             "name": "Operators",
             "scope": [
                 "keyword.operator",
-                "keyword.operator.assignment",
-                "keyword.operator.arithmetic",
-                "keyword.operator.logical",
-                "keyword.operator.comparison",
-                "keyword.operator.pipe.r",
-                "keyword.operator.infix.r",
-                "keyword.operator.r",
                 "punctuation.accessor"
             ],
             "settings": {
@@ -173,10 +149,7 @@
         },
         {
             "name": "Storage Types",
-            "scope": [
-                "storage.type",
-                "storage.type.r"
-            ],
+            "scope": "storage.type",
             "settings": {
                 "fontStyle": "italic",
                 "foreground": "#66D9EF"
@@ -184,29 +157,14 @@
         },
         {
             "name": "Variables",
-            "scope": [
-                "variable",
-                "variable.other",
-                "variable.other.readwrite",
-                "variable.language.this",
-                "variable.language.self",
-                "variable.language.super",
-                "variable.other.r",
-                "text.html.quarto variable.object"
-            ],
+            "scope": "variable",
             "settings": {
                 "foreground": "#F8F8F8"
             }
         },
         {
             "name": "Function Parameters",
-            "scope": [
-                "variable.parameter",
-                "variable.parameter.r",
-                "meta.function.parameters variable.parameter",
-                "meta.function.declaration variable.parameter",
-                "meta.function.call.arguments variable.parameter"
-            ],
+            "scope": "variable.parameter",
             "settings": {
                 "fontStyle": "italic",
                 "foreground": "#FD971F"
@@ -218,11 +176,7 @@
                 "entity.name.function",
                 "support.function",
                 "variable.function",
-                "meta.function-call",
-                "source.r entity.name.function.r",
-                "source.r variable.function.r",
-                "text.html.quarto entity.name.function",
-                "text.html.quarto variable.function.r"
+                "meta.function-call"
             ],
             "settings": {
                 "foreground": "#66D9EF"
@@ -232,8 +186,7 @@
             "name": "Function Definitions - Green Override",
             "scope": [
                 "meta.function entity.name.function",
-                "meta.definition.function entity.name.function",
-                "source.r meta.function.r entity.name.function"
+                "meta.definition.function entity.name.function"
             ],
             "settings": {
                 "foreground": "#A6E22E"
@@ -286,7 +239,6 @@
                 "markup.heading",
                 "entity.name.section.markdown",
                 "entity.name.section.quarto",
-                "markup.heading.quarto",
                 "heading.1.quarto",
                 "heading.2.quarto",
                 "heading.3.quarto",
@@ -369,10 +321,7 @@
         },
         {
             "name": "Diff Header",
-            "scope": [
-                "meta.diff",
-                "meta.diff.header"
-            ],
+            "scope": "meta.diff",
             "settings": {
                 "foreground": "#75715E"
             }
@@ -400,10 +349,7 @@
         },
         {
             "name": "Invalid/Error",
-            "scope": [
-                "invalid",
-                "invalid.illegal"
-            ],
+            "scope": "invalid",
             "settings": {
                 "background": "#F92672",
                 "foreground": "#F8F8F8"

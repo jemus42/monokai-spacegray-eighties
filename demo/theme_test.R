@@ -94,6 +94,8 @@ my_function <- function(x, y = 10, ...) {
   return(result)
 }
 
+foo <- function(x) x
+
 # Function calls
 my_result <- my_function(5, 20) # my_function should be green
 
