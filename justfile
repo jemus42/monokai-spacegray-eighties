@@ -27,21 +27,26 @@ build: clean
     @echo "Built: {{vsix}}"
 
 # Install extension to editors
-install: build
-    @echo "Installing extension to VS Code and Positron..."
+install: install-vsc install-positron
+    @echo "Installation complete!"
+
+# Install extension to VS Code
+install-vsc: build
     @if command -v code >/dev/null 2>&1; then \
         echo "Installing to VS Code..."; \
         code --install-extension {{vsix}}; \
     else \
         echo "VS Code not found, skipping..."; \
     fi
+
+# Install extension to Positron
+install-positron: build
     @if command -v positron >/dev/null 2>&1; then \
         echo "Installing to Positron..."; \
         positron --install-extension {{vsix}}; \
     else \
         echo "Positron not found, skipping..."; \
     fi
-    @echo "Installation complete!"
 
 # Package without installing
 package: build
