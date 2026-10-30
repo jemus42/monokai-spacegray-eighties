@@ -1,0 +1,35 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+      - name: Check tag matches package.json
+        run: test "v$(jq -r .version vscode/package.json)" = "$GITHUB_REF_NAME"
+      - run: python3 validate_theme.py
+      - run: npx --yes @vscode/vsce@4 package
+        working-directory: vscode
+      - name: Publish to Open VSX
+        run: npx --yes ovsx@1 publish *.vsix
+        working-directory: vscode
+        env:
+          OVSX_PAT: ${{ secrets.OVSX_TOKEN }}
+      - name: Create GitHub release
+        run: |
+          awk -v v="${GITHUB_REF_NAME#v}" '/^## \[/ { if (p) exit; p = index($0, "[" v "]") > 0; next } p' CHANGELOG.md > notes.md
+          gh release create "$GITHUB_REF_NAME" vscode/*.vsix --title "$GITHUB_REF_NAME" --notes-file notes.md
+        env:
+          GH_TOKEN: ${{ github.token }}

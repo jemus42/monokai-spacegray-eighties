@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# /// script
+# dependencies = ["pillow"]
+# ///
 """
 Create a Conway's Game of Life glider icon for the Monokai Spacegray Eighties theme
 """

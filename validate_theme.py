@@ -1,71 +1,67 @@
 #!/usr/bin/env python3
 """
-Theme validation script to check for duplicates and conflicts
+Theme validation: duplicate scopes across rules, redundant scopes within a rule
 """
 
 import json
-from collections import defaultdict, Counter
+import sys
+from collections import defaultdict
 
-def validate_theme(theme_path):
-    with open(theme_path, 'r') as f:
-        theme = json.load(f)
-    
-    print("🎨 Theme Validation Report")
-    print("=" * 50)
-    
-    token_colors = theme.get('tokenColors', [])
-    print(f"📊 Total rules: {len(token_colors)}")
-    
-    # Track scope usage
-    scope_to_rules = defaultdict(list)
-    scope_colors = defaultdict(set)
-    
-    for i, rule in enumerate(token_colors):
-        rule_name = rule.get('name', f'Rule {i}')
-        scopes = rule.get('scope', [])
-        color = rule.get('settings', {}).get('foreground')
-        
-        if isinstance(scopes, str):
-            scopes = [scopes]
-        
-        for scope in scopes:
-            scope_to_rules[scope].append((i, rule_name))
-            if color:
-                scope_colors[scope].add(color)
-    
-    # Find duplicates
-    duplicates = {scope: rules for scope, rules in scope_to_rules.items() if len(rules) > 1}
-    
-    if duplicates:
-        print("\n⚠️  DUPLICATE SCOPES:")
-        for scope, rules in duplicates.items():
-            colors = list(scope_colors[scope])
-            print(f"  • {scope}")
-            for rule_idx, rule_name in rules:
-                rule_color = token_colors[rule_idx].get('settings', {}).get('foreground', 'none')
-                print(f"    - Rule #{rule_idx}: {rule_name} → {rule_color}")
-            if len(colors) > 1:
-                print(f"    ⚠️  CONFLICT: Multiple colors {colors}")
-            print()
-    else:
-        print("\n✅ No duplicate scopes found!")
-    
-    # Check for unused base scopes
-    print("\n📋 SCOPE COVERAGE:")
-    base_scopes = ['source.r', 'text.html.quarto', 'variable', 'keyword', 'string', 'comment', 'constant']
-    for base in base_scopes:
-        matching = [s for s in scope_to_rules.keys() if base in s]
-        print(f"  • {base}: {len(matching)} rules")
-    
-    # Color usage
-    print("\n🎨 COLOR USAGE:")
-    all_colors = [rule.get('settings', {}).get('foreground') for rule in token_colors]
-    color_counts = Counter(c for c in all_colors if c)
-    for color, count in color_counts.most_common():
-        print(f"  • {color}: {count} rules")
-    
-    return len(duplicates) == 0
+
+def covers(prefix, scope):
+    return scope == prefix or scope.startswith(prefix + ".")
+
+
+def scopes_of(rule):
+    scopes = rule.get("scope", [])
+    return [scopes] if isinstance(scopes, str) else scopes
+
+
+def find_duplicates(rules):
+    seen = defaultdict(list)
+    for i, rule in enumerate(rules):
+        for scope in scopes_of(rule):
+            seen[scope].append(rule.get("name", f"Rule {i}"))
+    return {s: names for s, names in seen.items() if len(names) > 1}
+
+
+def find_redundant(rules):
+    """Scopes already covered by a broader scope in the same rule.
+
+    Only flagged when no other rule sits in between, since then removing the
+    narrower scope could change which rule wins.
+    """
+    others = [(i, s) for i, r in enumerate(rules) for s in scopes_of(r) if " " not in s]
+    redundant = []
+    for i, rule in enumerate(rules):
+        plain = [s for s in scopes_of(rule) if " " not in s]
+        for s in plain:
+            for p in plain:
+                if p == s or not covers(p, s):
+                    continue
+                between = any(j != i and q != p and covers(p, q) and covers(q, s) for j, q in others)
+                if not between:
+                    redundant.append((rule.get("name"), s, p))
+                    break
+    return redundant
+
+
+def main(path):
+    with open(path) as f:
+        rules = json.load(f).get("tokenColors", [])
+
+    ok = True
+    for scope, names in find_duplicates(rules).items():
+        print(f"duplicate scope {scope!r} in rules: {', '.join(names)}")
+        ok = False
+    for name, scope, broader in find_redundant(rules):
+        print(f"redundant scope {scope!r} in rule {name!r}, covered by {broader!r}")
+        ok = False
+
+    if ok:
+        print(f"✓ {len(rules)} token rules, no duplicate or redundant scopes")
+    return ok
+
 
 if __name__ == "__main__":
-    is_valid = validate_theme("vscode/themes/monokai-spacegray-eighties.json")
-    exit(0 if is_valid else 1)
+    sys.exit(0 if main("vscode/themes/monokai-spacegray-eighties.json") else 1)

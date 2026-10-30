@@ -1,37 +1,49 @@
 # Monokai Spacegray Eighties
 
-An editor theme I kind of got used to a lot.
+[![Open VSX version](https://img.shields.io/open-vsx/v/jemus42/monokai-spacegray-eighties)](https://open-vsx.org/extension/jemus42/monokai-spacegray-eighties)
 
-I got it off of a TextMate theme editor webapp thingy a while back, imported it to RStudio 
-(which understood the `.tmTheme` format and converted it to its CSS format (I think)), 
-and now I would like to use it with [Positron](https://positron.posit.co/) so I had to try 
-to convert to to the VSCode format.
+A dark Monokai theme on a neutral gray background, made for R and Quarto in [Positron](https://positron.posit.co/).
 
-Disclaimer: I used Claude heavily for the conversion from tmTheme to VScode and threw in the 
-rstheme for good measure and honestly I'm just trial-and-erroring my way towards a usable theme.
+It started as a TextMate theme I picked up years ago (original by [pyoio](https://github.com/pyoio/monokai-spacegray)) and used in RStudio, and this is the port to Positron and VS Code.
+The original `.tmTheme` and RStudio `.rstheme` are kept in this repository for reference.
 
-The primary target for the R syntax is Positron, so if it doesn't look exactly correct for VSCode with the REditorSupport R extension: Yes, I know, sorry about that, it is a compromise.
+## Palette
 
-I also tried to make quarto documents look okay but everything about this is quite WIP.
+| Color | Used for |
+|---|---|
+| `#F92672` pink | keywords, operators, tags |
+| `#66D9EF` cyan | function calls, builtin types, links, UI accents |
+| `#A6E22E` green | function and class definitions, headings, package namespaces |
+| `#E6DB74` yellow | strings |
+| `#AE81FF` purple | numbers and constants |
+| `#FD971F` orange | parameters, inline code in Markdown |
+| `#808080` gray | comments |
 
-## Building for VSCode / Positron
+The terminal and the Positron console get a matching ANSI palette, so cli and testthat output fits in.
 
-Either use `just install` or do it manually:
+## Installation
+
+Install it from [Open VSX](https://open-vsx.org/extension/jemus42/monokai-spacegray-eighties), which is where Positron gets its extensions, or search the Extensions view for "Monokai Spacegray Eighties".
+Then pick it with **Preferences: Color Theme**.
+
+## Notes
+
+Positron is the primary target.
+Its R grammar differs from the one in VS Code and the REditorSupport extension, so R code may look slightly different in VS Code.
+
+## Development
+
+Build and install locally with [just](https://github.com/casey/just), which needs `jq`, Node (for `npx`) and [uv](https://docs.astral.sh/uv/):
 
 ```sh
-cd vscode
-
-# Build the extensions, needs the vsce tool installed via npm.
-vsce package
-
-# Install for VSCode
-code --install-extension *vsix
-
-# Install for Positron
-positron --install-extension *vsix
+just install           # validate, build the .vsix, install into VS Code and Positron
+just install-positron  # Positron only
+just validate          # check the theme for duplicate or redundant scopes
+just uninstall
 ```
 
+`demo/` has R, Python and Quarto files for checking the highlighting.
+**Developer: Inspect Editor Tokens and Scopes** shows which scopes and theme rule apply to a token.
 
-## Credit
-
-Original (I think?) TextMate theme from [pyoio](https://github.com/pyoio/monokai-spacegray)
+To release, rename the `[Unreleased]` section in `CHANGELOG.md` to the version from `vscode/package.json`, commit, and push a matching `v*` tag.
+The release workflow then publishes to Open VSX (using the `OVSX_TOKEN` repository secret) and creates a GitHub release with that changelog section as notes.
