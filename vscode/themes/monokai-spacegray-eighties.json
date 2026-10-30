@@ -18,7 +18,7 @@
         "editorLineNumber.activeForeground": "#F8F8F8",
         "editorIndentGuide.background": "#3A3A3A",
         "editorIndentGuide.activeBackground": "#6A6A6A",
-        "editorBracketMatch.background": "rgba(128, 128, 128, 0.5)",
+        "editorBracketMatch.background": "#80808080",
         "editorBracketMatch.border": "#808080",
         "sideBar.background": "#1C1C1C",
         "sideBar.foreground": "#F8F8F8",
@@ -235,6 +235,58 @@
             }
         },
         {
+            "name": "Library Constants",
+            "scope": "support.constant",
+            "settings": {
+                "foreground": "#66D9EF"
+            }
+        },
+        {
+            "name": "Tag Names",
+            "scope": "entity.name.tag",
+            "settings": {
+                "foreground": "#F92672"
+            }
+        },
+        {
+            "name": "Tag Attributes",
+            "scope": "entity.other.attribute-name",
+            "settings": {
+                "foreground": "#A6E22E"
+            }
+        },
+        {
+            "name": "Diff Header",
+            "scope": [
+                "meta.diff",
+                "meta.diff.header"
+            ],
+            "settings": {
+                "foreground": "#75715E"
+            }
+        },
+        {
+            "name": "Diff Deleted",
+            "scope": "markup.deleted",
+            "settings": {
+                "foreground": "#F92672"
+            }
+        },
+        {
+            "name": "Diff Inserted",
+            "scope": "markup.inserted",
+            "settings": {
+                "foreground": "#A6E22E"
+            }
+        },
+        {
+            "name": "Diff Changed",
+            "scope": "markup.changed",
+            "settings": {
+                "foreground": "#E6DB74"
+            }
+        },
+        {
             "name": "Invalid/Error",
             "scope": [
                 "invalid",
@@ -242,6 +294,14 @@
             ],
             "settings": {
                 "background": "#F92672",
+                "foreground": "#F8F8F8"
+            }
+        },
+        {
+            "name": "Invalid Deprecated",
+            "scope": "invalid.deprecated",
+            "settings": {
+                "background": "#AE81FF",
                 "foreground": "#F8F8F8"
             }
         }
